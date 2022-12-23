@@ -77,6 +77,7 @@ A fully featured LaTeX thesis class for [Shahid Chamran University of Ahvaz][scu
 ### پیش‌نیازها
 1. نصب کامل TexLive روی ویندوز / لینوکس ([آموزش][texlive-install]) یا نصب کامل MacTex روی مک ([آموزش][mac-install])
 1. دریافت بسته لاتک پایان‌نامه دانشگاه چمران ([دریافت فایل فشرده][zip-link])
+1. نصب قلم‌های موجود در پوشه `fonts` در سیستم عامل خود
 1. آشنایی با دستورات لاتک
 
 ### وارد کردن اطلاعات

@@ -1,0 +1,109 @@
+\documentclass{scu-thesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% User settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% English digits in equations and tikz
+% \DefaultMathsDigits
+
+% Two columns footnotes
+\twocolumnfootnotes
+
+% Hide borders of hyperlinks
+% \hypersetup {hidelinks}
+
+% Using tikz positioning
+\usetikzlibrary{positioning}
+
+% Nastaliq font (you must install IranNastaliq font before using this command)
+% \defpersianfont\nastaliq{IranNastaliq}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Read user input files %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Input the cover information
+\input{edit/information}
+
+% Glossary inputs
+\input{edit/glossary}
+
+% Abstracts
+\input{edit/abstract-persian}
+\input{edit/abstract-english}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Generate the document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DO NOT EDIT without knowing what you are doing! %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin {document}
+	
+	% Besmellah page
+	% Put your besmellah file in images directory. Supported formats: jpg, png, pdf, eps
+	% File name MUST be "besmellah" (all in lowercase)
+	\printBesmellah
+	
+	% Persian Cover page
+	\makeCoverPersian
+
+	% Evaluation page
+	\makeEvaluation
+	
+	% Originality page
+	\makeOriginality
+
+	% Dedication page
+	\include{edit/dedication}
+	
+	% Acknowledgements page
+	\include{edit/acknowledgement}
+
+	% Persian abstract page
+	\makeAbstractPersian
+	
+	% Table of contents
+    \makeTableOfContents
+	
+	% List of figures
+    \makeListOfFigures
+
+	% List of tables
+    \makeListOfTables
+	
+	% Do NOT remove or comment the line below
+    \startChapters% DON'T TOUCH
+    
+    % Chapters
+	\include{edit/chapters/1-introduction}
+	\include{edit/chapters/2-related_works}
+	\include{edit/chapters/3-proposed_method}
+	\include{edit/chapters/4-evaluation}
+    \include{edit/chapters/5-conclusion}
+    
+    % References
+    \bibliographystyle{plain-fa}
+    \makeBibliography
+
+    % Glossary and Abbreviations
+	% Uncomment two below lines to print Glossary and Abbreviations
+    % \printglossary
+    % \printabbreviation
+
+	% Do NOT remove or comment the line below
+    \closeChapters% DON'T TOUCH
+    
+	% English sections
+	\begin{latin}
+
+		% English abstract page
+		\makeAbstractEnglish
+		
+		% English cover page
+		\makeCoverEnglish
+
+	\end{latin}
+
+\end {document}

@@ -327,7 +327,7 @@
 \setlatintextfont [Scale = 1.2] {Times New Roman}
 
 % Define line height
-\linespread {2}
+\linespread {1.7}
 
 % Use dash instead of dot, to separate numbers of sections, figures and tables
 \SepMark{-}

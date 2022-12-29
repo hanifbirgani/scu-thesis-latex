@@ -314,11 +314,64 @@
 %% Modifications %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%______________________________________________________________________
+%%%%%% General Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
 % Root directory for images
 \graphicspath {{images/}}
 
-% Table of Contents, List of Figures, List of Tables config
-% \renewcommand{\cftchapdotsep}{\cftdotsep}
+% Set the default font family and font size
+\settextfont [Scale = 1.4] {IRXLotus}
+\setdigitfont [Scale = 1.4] {IRXLotus}
+\setlatintextfont [Scale = 1.2] {Times New Roman}
+
+% Define line height
+\linespread {2}
+
+% Use dash instead of dot, to separate numbers of sections, figures and tables
+\SepMark{-}
+
+% Subsubsections numbering
+\setcounter{secnumdepth}{3}
+
+% Change references section title
+\renewcommand\bibname {فهرست مراجع}
+
+% Put reference numbers in parentheses for {figure, equation, table}
+% \makeatletter
+% \renewcommand\p@figure{\expandafter\counter@parenthesize}
+% \newcommand\counter@parenthesize[1]{(#1)}
+
+% \renewcommand\p@equation{\expandafter\eqcounter@parenthesize}
+% \newcommand\eqcounter@parenthesize[1]{(#1)}
+% \renewcommand{\eqref}[1]{\ref{#1}}% renew \eqref to print one parentheses around equation number
+
+% \renewcommand\p@table{\expandafter\tablecounter@parenthesize}
+% \newcommand\tablecounter@parenthesize[1]{(#1)}
+% \makeatother
+
+% Exclude "the", "and", "or" from capitalize command (titlecaps package)
+\Addlcwords{are or the and in on of etc}
+
+% Make all the images centre in horizontal alignment
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+% Generate pdf meta data
+\AtBeginDocument{
+    \hypersetup{
+        pdfauthor={\printAuthorEnglish},
+        pdftitle={\printReportTitleEnglish},
+        pdfsubject={Thesis in \printReportTitleEnglish},
+        pdfkeywords={\printKeywordsEnglish},
+    }
+}
+
+%______________________________________________________________________
+%%%%%% Table of Contents, List of Figures, List of Tables config %%%%%%
+%‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 \setlength{\cftbeforeloftitleskip}{3cm} % Change vertical space between title and page margins
 \setlength{\cftbeforelottitleskip}{3cm} % Change vertical space between title and page margins
 \setlength{\cftbeforetoctitleskip}{3cm} % Change vertical space between title and page margins
@@ -337,30 +390,15 @@
 % Centering list of tables title
 \renewcommand{\cftlottitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftafterlottitle}{\hfill}
-
-% Exclude "the", "and", "or" from capitalize command (titlecaps package)
-\Addlcwords{are or the and in on of etc}
-
-
-% Remove page number on chapter pages
-% \fancypagestyle{plain}{%
-%   \renewcommand{\headrulewidth}{0pt}%
-%   \fancyhf{}%
-% }
-
-% Subsubsections numbering
-\setcounter{secnumdepth}{3}
-
 % Include subsubsections in the table of contents
 \setcounter{tocdepth}{2}
 
+%______________________________________________________________________
+%%%%%% Chapters' first page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
 % Centering chapter titles
 \titleformat{\chapter}[display]{\bfseries}{\huge فصل {\tartibi{chapter}}}{1em}{\centering \Huge #1}
-
-% Make all the images centre in horizontal alignment
-\makeatletter
-\g@addto@macro\@floatboxreset\centering
-\makeatother
 
 % Make chapter titles Tartibi (aval, dovom, sevom) on the first page of each chapter
 % Make chapter number arabic in other places
@@ -369,6 +407,15 @@
 \bidi@patchcmd{\chaptermark}{\thechapter}{\tartibi{chapter}}{}{}
 \makeatother
 
+% Remove page number on chapter pages
+% \fancypagestyle{plain}{%
+%   \renewcommand{\headrulewidth}{0pt}%
+%   \fancyhf{}%
+% }
+
+%______________________________________________________________________
+%%%%%% Headers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 % Normal pages header
 \pagestyle {fancy}
 
@@ -377,43 +424,6 @@
 
 % Chapter title at the right side of header
 \rhead {\leftmark}
-
-% Change references section title
-\renewcommand\bibname {فهرست مراجع}
-
-% Set the default font family and font size
-\settextfont [Scale = 1.4] {IRXLotus}
-\setdigitfont [Scale = 1.4] {IRXLotus}
-\setlatintextfont [Scale = 1.2] {Times New Roman}
-
-% Define line height
-\linespread {2}
-
-% Put reference numbers in parentheses for {figure, equation, table}
-% \makeatletter
-% \renewcommand\p@figure{\expandafter\counter@parenthesize}
-% \newcommand\counter@parenthesize[1]{(#1)}
-
-% \renewcommand\p@equation{\expandafter\eqcounter@parenthesize}
-% \newcommand\eqcounter@parenthesize[1]{(#1)}
-% \renewcommand{\eqref}[1]{\ref{#1}}% renew \eqref to print one parentheses around equation number
-
-% \renewcommand\p@table{\expandafter\tablecounter@parenthesize}
-% \newcommand\tablecounter@parenthesize[1]{(#1)}
-% \makeatother
-
-% Use dash instead of dot, to separate numbers of sections, figures and tables
-\SepMark{-}
-
-% Generate pdf meta data
-\AtBeginDocument{
-    \hypersetup{
-        pdfauthor={\printAuthorEnglish},
-        pdftitle={\printReportTitleEnglish},
-        pdfsubject={Thesis in \printReportTitleEnglish},
-        pdfkeywords={\printKeywordsEnglish},
-    }
-}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

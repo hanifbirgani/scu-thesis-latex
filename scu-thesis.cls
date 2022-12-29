@@ -857,7 +857,7 @@
 
     \begin{center}
         % University Logo
-        \includegraphics[width=0.25\linewidth]{scu_logo} \\
+        \includegraphics[width=0.25\linewidth]{scu_logo_en} \\
 
         % University title
         \href{\printUniversityLink}{\titlecap{\printUniversityTitleEnglish}} \\

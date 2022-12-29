@@ -382,8 +382,8 @@
 \renewcommand\bibname {فهرست مراجع}
 
 % Set the default font family and font size
-\settextfont [Scale = 1.3] {XB Niloofar}
-\setdigitfont [Scale = 1.3] {XB Niloofar}
+\settextfont [Scale = 1.4] {IRXLotus}
+\setdigitfont [Scale = 1.4] {IRXLotus}
 \setlatintextfont [Scale = 1.2] {Times New Roman}
 
 % Define line height

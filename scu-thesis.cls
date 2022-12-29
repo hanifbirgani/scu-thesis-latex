@@ -323,8 +323,8 @@
 \setlength{\cftbeforelottitleskip}{3cm} % Change vertical space between title and page margins
 \setlength{\cftbeforetoctitleskip}{3cm} % Change vertical space between title and page margins
 \setlength{\cftsecindent}{0.5cm} % Indent for \section in TOC
-\setlength{\cftsubsecindent}{0.5cm} % Indent for \subsection in TOC
-\setlength{\cftsubsubsecindent}{0.5cm} % Indent for \subsubsection in TOC
+\setlength{\cftsubsecindent}{1cm} % Indent for \subsection in TOC
+\setlength{\cftsubsubsecindent}{1.5cm} % Indent for \subsubsection in TOC
 \setlength{\cftfignumwidth}{32pt} % Space between number and text for list of figures
 \setlength{\cftsecnumwidth}{30pt} % Space between number and text for subsubsections in TOC
 \setlength{\cftsubsecnumwidth}{45pt} % Space between number and text for subsubsections in TOC

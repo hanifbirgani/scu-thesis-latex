@@ -222,11 +222,11 @@
 % Images package
 \RequirePackage{graphicx}
 
+% To edit captions style
+\RequirePackage[font=small, skip=5pt]{caption}
+
 % Subcaption for subfigures
 \RequirePackage{subcaption}
-
-% To edit captions style
-\RequirePackage[font=footnotesize, skip=5pt]{caption}
 
 % Package for changing headings style
 \RequirePackage{fancyhdr}

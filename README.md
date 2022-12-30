@@ -30,12 +30,12 @@ A fully featured LaTeX thesis class for [Shahid Chamran University of Ahvaz][scu
 │   ├── besmellah.pdf
 │   └── scu_logo.pdf
 ├── edit
-│   ├── abstract-english.tex
-│   ├── abstract-persian.tex
-│   ├── acknowledgement.tex
-│   ├── dedication.tex
+│   ├── 00_information.tex
+│   ├── 01_dedication.tex
+│   ├── 02_acknowledgement.tex
+│   ├── 03_abstract-persian.tex
+│   ├── 04_abstract-english.tex
 │   ├── glossary.tex
-│   ├── information.tex
 │   ├── references.bib
 │   └── chapters
 │       ├── 1-introduction.tex
@@ -60,12 +60,12 @@ A fully featured LaTeX thesis class for [Shahid Chamran University of Ahvaz][scu
 
 - پوشه `edit`:
     - این پوشه شامل محتویات متنی پایان‌نامه است.
-    - فایل `abstract-english.tex` &larr; چکیده انگلیسی
-    - فایل `abstract-persian.tex` &larr; چکیده فارسی
-    - فایل `acknowledgement.tex` &larr; صفحهٔ سپاس
-    - فایل `dedication.tex` &larr; صفحهٔ تقدیم
+    - فایل `00_information.tex` &larr; اطلاعات عمومی پایان‌نامه مانند نام دانشجو، استاد راهنما و...
+    - فایل `01_dedication.tex` &larr; صفحهٔ تقدیم
+    - فایل `02_acknowledgement.tex` &larr; صفحهٔ سپاس
+    - فایل `03_abstract-persian.tex` &larr; چکیده فارسی
+    - فایل `04_abstract-english.tex` &larr; چکیده انگلیسی
     - فایل `glossary.tex` &larr; دستورات مربوط به معرفی واژه‌های جدید واژه‌نامه و اختصارات
-    - فایل `information.tex` &larr; اطلاعات عمومی پایان‌نامه مانند نام دانشجو، استاد راهنما و...
     - فایل `references.bib` &larr; اطلاعات مراجع پایان‌نامه با ساختار `bibtex`
     - پوشه `chapters` &larr; محتوای فصل‌های پایان‌نامه
 
@@ -81,8 +81,8 @@ A fully featured LaTeX thesis class for [Shahid Chamran University of Ahvaz][scu
 1. آشنایی با دستورات لاتک
 
 ### وارد کردن اطلاعات
-1. در پوشه `edit` فایل `information.tex` را با ویرایشگر دلخواه خود باز کنید و کلیه اطلاعات خواسته شده را طبق الگوی موجود در فایل وارد کرده و فایل را ذخیره کنید.
-1. صفحات سپاس `acknowledgement.tex`، تقدیم `dedication.tex`، چکیده فارسی `abstract-persian.tex` و چکیده انگلیسی `abstract-english.tex` را با ویرایشگر دلخواه باز کرده و پس از وارد کردن متن دلخواه، آن‌ها را ذخیره کنید.
+1. در پوشه `edit` فایل `00_information.tex` را با ویرایشگر دلخواه خود باز کنید و کلیه اطلاعات خواسته شده را طبق الگوی موجود در فایل وارد کرده و فایل را ذخیره کنید.
+1. صفحات سپاس `02_acknowledgement.tex`، تقدیم `01_dedication.tex`، چکیده فارسی `03_abstract-persian.tex` و چکیده انگلیسی `04_abstract-english.tex` را با ویرایشگر دلخواه باز کرده و پس از وارد کردن متن دلخواه، آن‌ها را ذخیره کنید.
 
 ### ساخت pdf
 برای ساخت pdf دستورات زیر را به ترتیب در محیط خط فرمان اجرا کنید:

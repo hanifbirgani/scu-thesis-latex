@@ -332,6 +332,8 @@
 \settextfont [Scale = 1.4] {IRXLotus}
 \setdigitfont [Scale = 1.4] {IRXLotus}
 \setlatintextfont [Scale = 1.2] {Times New Roman}
+\defpersianfont\titrNormal[Scale=1.6]{XB Titre}
+\defpersianfont\titrHuge[Scale=1.8]{XB Titre}
 
 % Define line height
 \linespread {1.7}
@@ -409,13 +411,13 @@
 % \setlength{\cftsubsecnumwidth}{10pt} % Space between number and text for subsubsections in TOC
 
 % Centering table of contents title
-\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries}
+\renewcommand{\cfttoctitlefont}{\hfill\titrHuge}
 \renewcommand{\cftaftertoctitle}{\hfill}
 % Centering list of figures title
-\renewcommand{\cftloftitlefont}{\hfill\Huge\bfseries}
+\renewcommand{\cftloftitlefont}{\hfill\titrHuge}
 \renewcommand{\cftafterloftitle}{\hfill}
 % Centering list of tables title
-\renewcommand{\cftlottitlefont}{\hfill\Huge\bfseries}
+\renewcommand{\cftlottitlefont}{\hfill\titrHuge}
 \renewcommand{\cftafterlottitle}{\hfill}
 
 % Include subsubsections in the table of contents
@@ -444,10 +446,10 @@
 % Centering chapter titles
 \titleformat{\chapter}
     [display]
-    {\bfseries}
-    {\huge \chaptertitlename{} \TartibiIfNumberOrNormalIfString{\thechapter}}
-    {1em}
-    {\centering \Huge #1}
+    {}
+    {{\titrNormal \chaptertitlename{} \TartibiIfNumberOrNormalIfString{\thechapter}}}
+    {1cm}
+    {\centering {\titrHuge #1}}
 
 % Remove page number on chapter pages
 % \fancypagestyle{plain}{%

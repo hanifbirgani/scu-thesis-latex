@@ -213,6 +213,9 @@
 % Table of Content package
 \RequirePackage{tocloft}
 
+% Table of Content Titles edit package
+\RequirePackage{titletoc}
+
 % Rotation package
 \RequirePackage[figuresleft]{rotating}
 
@@ -230,6 +233,10 @@
 
 % Package for changing headings style
 \RequirePackage{fancyhdr}
+
+% Package to check if an input is string or a number
+% We use it in \TartibiIfNumberOrNormalIfString command
+\RequirePackage{xstring}
 
 % Setting the margins of page
 \RequirePackage [
@@ -359,6 +366,19 @@
 \g@addto@macro\@floatboxreset\centering
 \makeatother
 
+% Replace "A" with "Alef" character in abjad/harfi items like page numbers (alph), captions (alph), appendix titles (harfi)
+\makeatletter
+\bidi@patchcmd{\@harfi}{آ}{الف}
+{\typeout{Succeeded in changing `آ` into `الف`}}
+{\typeout{Failed in changing `آ` into `الف`}}
+\makeatother
+
+\makeatletter
+\bidi@patchcmd{\@alph}{آ}{الف}
+{\typeout{Succeeded in changing `آ` into `الف`}}
+{\typeout{Failed in changing `آ` into `الف`}}
+\makeatother
+
 % Generate pdf meta data
 \AtBeginDocument{
     \hypersetup{
@@ -372,15 +392,22 @@
 %______________________________________________________________________
 %%%%%% Table of Contents, List of Figures, List of Tables config %%%%%%
 %‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+% \renewcommand*\cftchapdotsep{\cftdotsep} % Add dots to connect chapter title to its page number in TOC
+
 \setlength{\cftbeforeloftitleskip}{3cm} % Change vertical space between title and page margins
 \setlength{\cftbeforelottitleskip}{3cm} % Change vertical space between title and page margins
 \setlength{\cftbeforetoctitleskip}{3cm} % Change vertical space between title and page margins
+
 \setlength{\cftsecindent}{0.5cm} % Indent for \section in TOC
 \setlength{\cftsubsecindent}{1cm} % Indent for \subsection in TOC
 \setlength{\cftsubsubsecindent}{1.5cm} % Indent for \subsubsection in TOC
-\setlength{\cftfignumwidth}{32pt} % Space between number and text for list of figures
-\setlength{\cftsecnumwidth}{30pt} % Space between number and text for subsubsections in TOC
-\setlength{\cftsubsecnumwidth}{45pt} % Space between number and text for subsubsections in TOC
+
+% \setlength{\cftfignumwidth}{32pt} % Space between number and text for list of figures
+
+% \setlength{\cftsecnumwidth}{30pt} % Space between number and text for subsubsections in TOC
+% \setlength{\cftsubsecnumwidth}{10pt} % Space between number and text for subsubsections in TOC
+
 % Centering table of contents title
 \renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
@@ -390,22 +417,37 @@
 % Centering list of tables title
 \renewcommand{\cftlottitlefont}{\hfill\Huge\bfseries}
 \renewcommand{\cftafterlottitle}{\hfill}
+
 % Include subsubsections in the table of contents
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
+
+% protect "chapter" and "appendix" words in table of contents
+\makeatletter
+\appto\appendix{\addtocontents{toc}{\gdef\protect\@chapapp{\protect\appendixname}}}
+\appto\contentsfinish{\gdef\@chapapp{\chaptername}}
+\makeatother
+
+% Add tartibi title of chapters to table of contents (titletoc package)
+\contentsmargin{0pt}
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {}% <above-code>
+  {\bfseries\chaptertitlename\ \TartibiIfNumberOrNormalIfString{\thecontentslabel}\\*}% <numbered-entry-format>
+%   {\bfseries\chaptertitlename\ \thecontentslabel:\ }% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hspace{5pt}\titlerule*[8pt]{.}\sffamily\bfseries\contentspage}
 
 %______________________________________________________________________
 %%%%%% Chapters' first page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 % Centering chapter titles
-\titleformat{\chapter}[display]{\bfseries}{\huge فصل {\tartibi{chapter}}}{1em}{\centering \Huge #1}
-
-% Make chapter titles Tartibi (aval, dovom, sevom) on the first page of each chapter
-% Make chapter number arabic in other places
-\makeatletter
-\bidi@patchcmd{\@makechapterhead}{\thechapter}{\tartibi{chapter}}{}{}
-\bidi@patchcmd{\chaptermark}{\thechapter}{\tartibi{chapter}}{}{}
-\makeatother
+\titleformat{\chapter}
+    [display]
+    {\bfseries}
+    {\huge \chaptertitlename{} \TartibiIfNumberOrNormalIfString{\thechapter}}
+    {1em}
+    {\centering \Huge #1}
 
 % Remove page number on chapter pages
 % \fancypagestyle{plain}{%
@@ -434,6 +476,15 @@
 \newcommand{\smallGap}{\\ [.2cm]}
 \newcommand{\mediumGap}{\\ [.5cm]}
 \newcommand{\bigGap}{\\ [1cm]}
+
+% Returns tartibi equivalent for numbers, returns same value if the input is not a number
+\newcommand*{\TartibiIfNumberOrNormalIfString}[1]{
+    \IfStrEq{#1}{ }{%
+        \ % return a space if the input is a blank string
+    }{%
+        \IfInteger{#1}{\tartibinumeral{#1}}{#1}%
+    }%
+}
 
 % Add a new page after table of contents
 \newcommand{\makeTableOfContents}{
@@ -857,7 +908,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Page: Cover English %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
 \newcommand{\makeCoverEnglish}{
     \clearpage
     \thispagestyle{empty}

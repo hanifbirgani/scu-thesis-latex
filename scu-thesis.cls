@@ -8,6 +8,16 @@
 %% License:     LPPL Version 1.3c
 %% 
 %% Changelog:
+%% [2.0.0] - 2022-12-30
+%% - Fix fonts for numbers and chapter titles
+%% - Change page opening side to remove unwanted empty pages at the end of chapters
+%% - Fix README
+%% - Add english logo of SCU to the abstract page
+%% - Fix indentation for toc items
+%% - Re-ordering class commands
+%% - Make captions larger
+%% - Change directory structure
+%%
 %% [1.0.0] - 2022-12-23
 %% - Fix README
 %% - Change directory structure

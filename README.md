@@ -121,7 +121,7 @@ etoolbox
 fancyhdr
 float
 geometry
-glossaries
+glossaries-extra
 graphicx
 hyperref
 lastpage
@@ -137,9 +137,11 @@ tabularx
 tikz
 titlecaps
 titlesec
+titletoc
 tocbibind
 tocloft
 xepersian
+xstring
 ```
 
 <div dir='rtl'>

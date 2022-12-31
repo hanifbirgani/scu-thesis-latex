@@ -2,7 +2,7 @@
 %% Name:        SCU Thesis
 %% Description: LaTeX thesis class for Shahid Chamran University of Ahvaz
 %% Package URL: https://github.com/hanifbirgani/scu-thesis-latex
-%% Version:     1.0.0
+%% Version:     2.0.0
 %% Author:      Hanif Taghipour Birgani
 %% Author URL:  https://HanifBirgani.com
 %% License:     LPPL Version 1.3c

@@ -8,6 +8,10 @@
 %% License:     LPPL Version 1.3c
 %% 
 %% Changelog:
+%% [3.0.0] - 2022-12-31
+%% - Fix typos
+%% - Set paragraph indents to 1cm
+%% - Set font size and font style for section titles
 %% [2.0.0] - 2022-12-30
 %% - Fix fonts for numbers and chapter titles
 %% - Change page opening side to remove unwanted empty pages at the end of chapters
@@ -214,7 +218,7 @@
 %% Import Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Math package
+% Math packages
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
@@ -348,11 +352,39 @@
 % Define line height
 \linespread {1.7}
 
+% Set paragraph indentation
+\setlength{\parindent}{1cm}
+
 % Use dash instead of dot, to separate numbers of sections, figures and tables
 \SepMark{-}
 
 % Subsubsections numbering
 \setcounter{secnumdepth}{3}
+
+% Set font style and space for section, subsection, subsubsection and subsubsubsection
+\titleformat{\section}
+    {\bfseries}
+    {\thesection}
+    {0.5cm}
+    {#1}
+
+\titleformat{\subsection}
+    {\bfseries}
+    {\thesubsection}
+    {0.5cm}
+    {#1}
+
+\titleformat{\subsubsection}
+    {\bfseries}
+    {\thesubsubsection}
+    {0.5cm}
+    {#1}
+
+\titleformat{\subsubsubsection}
+    {\bfseries}
+    {\thesubsubsection}
+    {0.5cm}
+    {#1}
 
 % Change references section title
 \renewcommand\bibname {فهرست مراجع}
@@ -378,17 +410,13 @@
 \g@addto@macro\@floatboxreset\centering
 \makeatother
 
-% Replace "A" with "Alef" character in abjad/harfi items like page numbers (alph), captions (alph), appendix titles (harfi)
+% Replace "A" with "Alef" character in abjad/harfi items like page numbers (alph), captions (alph) and appendix titles (harfi)
 \makeatletter
 \bidi@patchcmd{\@harfi}{آ}{الف}
-{\typeout{Succeeded in changing `آ` into `الف`}}
-{\typeout{Failed in changing `آ` into `الف`}}
 \makeatother
 
 \makeatletter
 \bidi@patchcmd{\@alph}{آ}{الف}
-{\typeout{Succeeded in changing `آ` into `الف`}}
-{\typeout{Failed in changing `آ` into `الف`}}
 \makeatother
 
 % Generate pdf meta data
@@ -423,9 +451,11 @@
 % Centering table of contents title
 \renewcommand{\cfttoctitlefont}{\hfill\titrHuge}
 \renewcommand{\cftaftertoctitle}{\hfill}
+
 % Centering list of figures title
 \renewcommand{\cftloftitlefont}{\hfill\titrHuge}
 \renewcommand{\cftafterloftitle}{\hfill}
+
 % Centering list of tables title
 \renewcommand{\cftlottitlefont}{\hfill\titrHuge}
 \renewcommand{\cftafterlottitle}{\hfill}
@@ -441,12 +471,11 @@
 
 % Add tartibi title of chapters to table of contents (titletoc package)
 \contentsmargin{0pt}
-\titlecontents{chapter}% <section-type>
-  [0pt]% <left>
-  {}% <above-code>
-  {\bfseries\chaptertitlename\ \TartibiIfNumberOrNormalIfString{\thecontentslabel}\\*}% <numbered-entry-format>
-%   {\bfseries\chaptertitlename\ \thecontentslabel:\ }% <numbered-entry-format>
-  {}% <numberless-entry-format>
+\titlecontents{chapter}
+  [0pt]
+  {}
+  {\bfseries\chaptertitlename\ \TartibiIfNumberOrNormalIfString{\thecontentslabel}\\*}
+  {}
   {\hspace{5pt}\titlerule*[8pt]{.}\sffamily\bfseries\contentspage}
 
 %______________________________________________________________________
@@ -460,6 +489,7 @@
     {{\titrNormal \chaptertitlename{} \TartibiIfNumberOrNormalIfString{\thechapter}}}
     {1cm}
     {\centering {\titrHuge #1}}
+
 
 % Remove page number on chapter pages
 % \fancypagestyle{plain}{%
@@ -491,11 +521,11 @@
 
 % Returns tartibi equivalent for numbers, returns same value if the input is not a number
 \newcommand*{\TartibiIfNumberOrNormalIfString}[1]{
-    \IfStrEq{#1}{ }{%
+    \IfStrEq{#1}{ }{
         \ % return a space if the input is a blank string
-    }{%
+    }{
         \IfInteger{#1}{\tartibinumeral{#1}}{#1}%
-    }%
+    }
 }
 
 % Add a new page after table of contents
@@ -532,7 +562,7 @@
 
 % Required commands after chapters
 \newcommand{\closeChapters}{
-    \label{LastPage}% It is used to calculate total pages' number for persian abstract
+    \label{LastPage}% It is used to calculate total pages' number for the persian abstract
     \newpage
 }
 
@@ -568,7 +598,7 @@
 
     \thispagestyle{empty}
 
-    % University logo
+    % University persian logo
     \begin{figure}
         \begin{flushleft}
             \vspace*{1.5cm}
@@ -602,7 +632,6 @@
         \smallGap
         \Large \textbf {\printReportTitle}
         \bigGap
-        
         
         % Supervisor(s)
         \ifdefempty{\printSupervisorSecond}{
@@ -663,23 +692,23 @@
 
     اینجانب \printAuthor \ دانشجوی دوره \printDegreeType \ گروه \printDepartement \ دانشکده \printFaculty \ \printUniversityTitle \ به شماره دانشجویی \printStudentID \ نویسندهٔ پایان‌نامه تحت راهنمایی \printSupervisor \ \ifdefempty{\printSupervisorSecond}{}{و \printSupervisorSecond \ }و مشاوره \printAdvisor \ \ifdefempty{\printAdvisorSecond}{}{و \printAdvisorSecond \ }متعهد می‌شوم:
     \begin{enumerate}
-    \itemsep-2.6mm
-    \item
-    تحقیقات ارائه شده در این پایان‌نامه حاصل مطالعات علمی و عملی شخص اینجانب بوده و صحت و اصالت تمام مطالب مندرج در آن را تأیید می‌کنم.
-    \item
-    درصورت استفاده از آثار و نتایج پژوهش‌های دیگران، مشخصات کامل آن‌ها را در منابع ذکر نموده‌ام. 
-    \item
-    تاکنون مطالب درج شده در این پایان‌نامه، توسط اینجانب و یا شخص دیگری به منظور اخذ هر نوع مدرک یا امتیازی به هیچ مرجعی تسلیم نشده و بعد از این نیز توسط اینجانب نخواهد شد.
-    \item
-    در تدوین متن پایان‌نامه، شیوه‌نامۀ مصوب دانشگاه را رعایت نموده‌ام.
-    \item
-    کلیۀ حقوق معنوی این اثر به \printUniversityTitle \ تعلق دارد و مقالات مستخرج از آن، ذیل نام «\printUniversityTitle» و یا «\lr{\printUniversityTitleEnglish}» به چاپ خواهد رسید.
-    \item
-    حقوق معنوی تمام افرادی که دراین پایان‌نامه تأثیرگذار بوده‌اند (استادان راهنما و مشاور) در مقالات مستخرج از آن رعایت خواهد شد.
-    \item
-    درصورت استفاده از موجودات زنده یا بافت‌های آن‌ها، کلیۀ ضوابط و اصول اخلاقی مندرج در منشور موازین و اصول اخلاق پژوهش وزارت علوم، تحقیقات و فناوری رعایت شده است. 
-    \item
-    در کلیه مراحل انجام این پایان‌نامه، در مواردی که به حوزه اطلاعات شخصی افراد دسترسی یافته و یا استفاده‌ شده است، اصل رازداری، ضوابط و اصول اخلاقی انسانی رعایت شده است.
+        \itemsep-2.6mm
+        \item
+        تحقیقات ارائه شده در این پایان‌نامه حاصل مطالعات علمی و عملی شخص اینجانب بوده و صحت و اصالت تمام مطالب مندرج در آن را تأیید می‌کنم.
+        \item
+        درصورت استفاده از آثار و نتایج پژوهش‌های دیگران، مشخصات کامل آن‌ها را در منابع ذکر نموده‌ام. 
+        \item
+        تاکنون مطالب درج شده در این پایان‌نامه، توسط اینجانب و یا شخص دیگری به منظور اخذ هر نوع مدرک یا امتیازی به هیچ مرجعی تسلیم نشده و بعد از این نیز توسط اینجانب نخواهد شد.
+        \item
+        در تدوین متن پایان‌نامه، شیوه‌نامۀ مصوب دانشگاه را رعایت نموده‌ام.
+        \item
+        کلیۀ حقوق معنوی این اثر به \printUniversityTitle \ تعلق دارد و مقالات مستخرج از آن، ذیل نام «\printUniversityTitle» و یا «\lr{\printUniversityTitleEnglish}» به چاپ خواهد رسید.
+        \item
+        حقوق معنوی تمام افرادی که دراین پایان‌نامه تأثیرگذار بوده‌اند (استادان راهنما و مشاور) در مقالات مستخرج از آن رعایت خواهد شد.
+        \item
+        درصورت استفاده از موجودات زنده یا بافت‌های آن‌ها، کلیۀ ضوابط و اصول اخلاقی مندرج در منشور موازین و اصول اخلاق پژوهش وزارت علوم، تحقیقات و فناوری رعایت شده است. 
+        \item
+        در کلیه مراحل انجام این پایان‌نامه، در مواردی که به حوزه اطلاعات شخصی افراد دسترسی یافته و یا استفاده‌ شده است، اصل رازداری، ضوابط و اصول اخلاقی انسانی رعایت شده است.
     \end{enumerate}
 
     \textbf{درصورت اثبات تخلف از مندرجات فوق، مسئولیت هرگونه پاسخ‌گویی به اشخاص حقیقی و حقوقی و مراجع ذی‌صلاح بر عهدۀ اینجانب بوده و \printUniversityTitle \ هیچ‌گونه مسئولیتی بر عهده نخواهد داشت. همچنین درصورت تضییع حقوق و منافع دانشگاه، حق پیگیری موضوع در مراجع ذی‌صلاح و اعمال قوانین مربوط برای \printUniversityTitle \ در حال و آینده محفوظ بوده و اینجانب مسئول پرداخت کلیۀ خسارات وارده خواهم بود.}
@@ -903,7 +932,7 @@
 
     \rowfont{\small}
     \multicolumn{2}{|r|}{
-    %\linespread{1.2} % Set line spacing
+    \linespread{1.3} % Set line spacing
 
         \makecell[{{p{\dimexpr 2\tabucolX+4\tabcolsep+\arrayrulewidth\relax}}}]{
                 \printAbstractEnglish
@@ -929,7 +958,7 @@
     \newgeometry{left=3.5cm, right=2.5cm, top=3cm, bottom=1cm}
 
     \begin{center}
-        % University Logo
+        % University english logo
         \includegraphics[width=0.25\linewidth]{scu_logo_en} \\
 
         % University title

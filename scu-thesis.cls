@@ -2,7 +2,7 @@
 %% Name:        SCU Thesis
 %% Description: LaTeX thesis class for Shahid Chamran University of Ahvaz
 %% Package URL: https://github.com/hanifbirgani/scu-thesis-latex
-%% Version:     2.0.0
+%% Version:     3.0.0
 %% Author:      Hanif Taghipour Birgani
 %% Author URL:  https://HanifBirgani.com
 %% License:     LPPL Version 1.3c
@@ -12,6 +12,7 @@
 %% - Fix typos
 %% - Set paragraph indents to 1cm
 %% - Set font size and font style for section titles
+%% - Fix page number position in footer
 %% [2.0.0] - 2022-12-30
 %% - Fix fonts for numbers and chapter titles
 %% - Change page opening side to remove unwanted empty pages at the end of chapters
@@ -254,11 +255,12 @@
 
 % Setting the margins of page
 \RequirePackage [
-    % showframe,
+    % showframe, % for debug
 	top = 3cm,
 	bottom = 2.5cm,
 	right = 3.5cm,
-    left = 3cm
+    left = 3cm,
+    footskip = 1cm % bottom margin (2.5) - page number position (1.5) = 1cm
 ] {geometry}
 
 % Multiline comments
